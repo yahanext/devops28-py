@@ -68,13 +68,26 @@ for result in result_os.split('\n'):
 ### Ваш скрипт:
 
 ```python
-???
+#!/usr/bin/env python3
+
+import os
+
+bash_command = ["cd ~/netology/sysadm-homeworks", "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+is_change = False
+for result in result_os.split('\n'):
+    if result.find('изменено') != -1:
+        prepare_result = result.replace('\tизменено:', '')
+        print("~/netology/sysadm-homeworks/",prepare_result)
 ```
 
 ### Вывод скрипта при запуске во время тестирования:
 
 ```
-???
+yaha@yahawork:~/projects$ ./scr.py
+~/netology/sysadm-homeworks/       03-sysadmin-03-os/README.md
+~/netology/sysadm-homeworks/       03-sysadmin-04-os/README.md
+
 ```
 
 ------
