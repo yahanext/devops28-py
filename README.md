@@ -40,7 +40,7 @@ c = a + b
 | ------------- | ------------- |
 | Какое значение будет присвоено переменной `c`?  | `error`  |
 | Как получить для переменной `c` значение 12?  | `c=str(a)+b`  |
-| Как получить для переменной `c` значение 3?  | 'c=int(b)+a' |
+| Как получить для переменной `c` значение 3?  | `c=int(b)+a` |
 
 ------
 
@@ -143,13 +143,43 @@ yaha@yahawork:~/projects$
 ### Ваш скрипт:
 
 ```python
-???
+#!/usr/bin/env python3
+import socket
+host_list = ["drive.google.com", "mail.google.com", "google.com"]
+pre_ip_list = {}
+while 1 == 1:
+    for dns_name in host_list:
+        ip = socket.gethostbyname(dns_name)
+        pre_ip_list.setdefault(dns_name, ip)
+        print(f"{dns_name} - {ip}")
+        if ip != pre_ip_list[dns_name]:
+            print(f"[ERROR] {dns_name} IP mismatch: {pre_ip_list[dns_name]}  - {ip}")
+            pre_ip_list[dns_name] = ip
+            
 ```
 
 ### Вывод скрипта при запуске во время тестирования:
 
 ```
-???
+drive.google.com - 64.233.165.194
+mail.google.com - 64.233.162.19
+[ERROR] mail.google.com IP mismatch: 64.233.162.18  - 64.233.162.19
+google.com - 142.251.1.100
+[ERROR] google.com IP mismatch: 142.251.1.139  - 142.251.1.100
+drive.google.com - 64.233.165.194
+mail.google.com - 64.233.162.19
+google.com - 142.251.1.102
+[ERROR] google.com IP mismatch: 142.251.1.100  - 142.251.1.102
+drive.google.com - 64.233.165.194
+mail.google.com - 64.233.162.17
+[ERROR] mail.google.com IP mismatch: 64.233.162.19  - 64.233.162.17
+google.com - 142.251.1.102
+drive.google.com - 64.233.165.194
+mail.google.com - 64.233.162.18
+[ERROR] mail.google.com IP mismatch: 64.233.162.17  - 64.233.162.18
+google.com - 142.251.1.113
+[ERROR] google.com IP mismatch: 142.251.1.102  - 142.251.1.113
+
 ```
 
 ------
