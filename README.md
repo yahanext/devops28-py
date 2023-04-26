@@ -110,16 +110,17 @@ is_change = False
 for result in result_os.split('\n'):
     if result.find('изменено') != -1:
         prepare_result = result.replace('\tизменено:', '')
-        print("~/netology/sysadm-homeworks/",prepare_result)
+        print(sys.argv[1],prepare_result)
 ```
 
 ### Вывод скрипта при запуске во время тестирования:
 
 ```
 yaha@yahawork:~/projects$ ./scr1.py ~/netology/sysadm-homeworks
-~/netology/sysadm-homeworks/       03-sysadmin-03-os/README.md
-~/netology/sysadm-homeworks/       03-sysadmin-04-os/README.md
+/home/yaha/netology/sysadm-homeworks       03-sysadmin-03-os/README.md
+/home/yaha/netology/sysadm-homeworks       03-sysadmin-04-os/README.md
 yaha@yahawork:~/projects$ 
+ 
 
 ```
 
